@@ -2,6 +2,10 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
+      "source": "/mira/:path*",
+      "destination": "https://api.rexxgraph.my.id/:path*"
+    },
+    {
       "source": "/api/:path*",
       "destination": "https://api.zetewstore.my.id/oploverz/:path*"
     }

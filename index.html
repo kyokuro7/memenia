@@ -4,10 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#090b14">
+  <link rel="icon" type="image/png" href="https://files.catbox.moe/tbvobp.png">
+  <link rel="apple-touch-icon" href="https://files.catbox.moe/tbvobp.png">
   <meta name="description" content="AniFams — tempat menemukan dan menonton anime favoritmu.">
   <title>AniFams — Anime Streaming</title>
   <link rel="preconnect" href="https://api.zetewstore.my.id">
-  <link rel="preconnect" href="https://oploverz.ch">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,19 +17,23 @@
 
   <header class="topbar">
     <a class="brand" href="#" aria-label="AniFams Home" data-nav="home">
-      <span class="brand-mark">A</span><span>Ani<span>Fams</span></span>
+      <img class="brand-logo" src="https://files.catbox.moe/tbvobp.png" alt="Logo AniFams" decoding="async" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'brand-mark',textContent:'A'}))"><span>Ani<span>Fams</span></span>
     </a>
-    <nav class="desktop-nav" aria-label="Navigasi utama">
-      <button class="nav-link active" data-nav="home">Home</button>
-      <button class="nav-link" data-nav="catalog">Anime</button>
-      <button class="nav-link" data-nav="ongoing">Ongoing</button>
-      <button class="nav-link" data-nav="completed">Completed</button>
-    </nav>
     <div class="top-actions">
       <button class="icon-button" id="searchToggle" aria-label="Buka pencarian" title="Cari anime">⌕</button>
       <button class="profile-chip" id="bookmarkNav" title="Anime tersimpan">♡</button>
     </div>
   </header>
+
+  <nav class="main-nav" aria-label="Navigasi utama">
+    <div class="nav-pill">
+        <button class="nav-link active" data-nav="home" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5"/></svg><span>Home</span></button>
+        <button class="nav-link" data-nav="catalog" aria-label="Anime"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.6"/></svg><span>Anime</span></button>
+        <button class="nav-link" data-nav="ongoing" aria-label="Ongoing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m10 8.6 5.4 3.4-5.4 3.4z"/></svg><span>Ongoing</span></button>
+        <button class="nav-link" data-nav="completed" aria-label="Completed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12.6 2.8 2.8L16 10"/></svg><span>Completed</span></button>
+        <button class="nav-link" data-nav="schedule" aria-label="Jadwal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.2"/><path d="M8 3v4M16 3v4M3.5 10.5h17"/></svg><span>Jadwal</span></button>
+    </div>
+  </nav>
 
   <main>
     <section class="search-panel hidden" id="searchPanel">
@@ -48,7 +53,7 @@
           <p>Jelajahi anime terbaru dan temukan tontonan berikutnya di AniFams.</p>
           <div class="hero-actions">
             <button class="primary-button" id="exploreButton">Jelajahi anime <span>→</span></button>
-            <span class="hero-note">AniFams v2 · Oploverz source</span>
+            <span class="hero-note">AniFams v2</span>
           </div>
         </div>
         <div class="hero-orbit orbit-a"></div><div class="hero-orbit orbit-b"></div>
@@ -62,6 +67,29 @@
           <button class="text-button" data-nav="catalog">Lihat katalog <span>↗</span></button>
         </div>
         <div class="anime-grid" id="latestGrid"></div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-heading">
+          <div><span class="section-kicker">ON AIR TODAY</span><h2>Tayang hari ini</h2></div>
+          <button class="text-button" data-nav="schedule">Lihat jadwal <span>↗</span></button>
+        </div>
+        <div class="anime-grid" id="todayGrid"></div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-heading">
+          <div><span class="section-kicker">COMING SOON</span><h2>Segera tayang</h2></div>
+          <button class="text-button" data-nav="schedule" data-sched-day="Segera tayang">Lihat semua <span>↗</span></button>
+        </div>
+        <div class="anime-grid" id="upcomingGrid"></div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-heading">
+          <div><span class="section-kicker">TOP RATED</span><h2>Ongoing skor tinggi</h2></div>
+        </div>
+        <div class="anime-grid" id="topGrid"></div>
       </section>
 
       <section class="content-section" id="continueSection">
@@ -115,6 +143,29 @@
       <div class="load-more-wrap"><button class="secondary-button" id="loadMore">Muat halaman berikutnya <span>↓</span></button></div>
     </section>
 
+    <section id="scheduleView" class="view hidden">
+      <div class="page-heading">
+        <span class="section-kicker">BROADCAST SCHEDULE</span>
+        <h1>Jadwal tayang</h1>
+        <p>Anime ongoing per hari dan anime yang segera tayang. Jam mengikuti yang tertera di sumber jadwal.</p>
+      </div>
+      <div class="genre-chips day-tabs" id="dayTabs"></div>
+      <div class="filters sched-filters">
+        <label class="filter-control"><span>Tipe</span>
+          <select id="schedType"><option value="">Semua tipe</option><option>TV</option><option>ONA</option><option>OVA</option><option>Movie</option><option>Special</option></select>
+        </label>
+        <label class="filter-control"><span>Skor minimal</span>
+          <select id="schedScore"><option value="">Semua skor</option><option value="6">6+</option><option value="7">7+</option><option value="7.5">7.5+</option><option value="8">8+</option></select>
+        </label>
+        <label class="filter-control"><span>Panjang anime</span>
+          <select id="schedLen"><option value="">Semua</option><option value="13">Maks. 13 episode</option><option value="26">Maks. 26 episode</option></select>
+        </label>
+        <button class="reset-button" id="schedReset">Reset</button>
+      </div>
+      <div class="result-line"><span id="schedLabel">Memuat jadwal...</span><span></span></div>
+      <div class="anime-grid" id="scheduleGrid"></div>
+    </section>
+
     <section id="bookmarksView" class="view hidden">
       <div class="page-heading">
         <span class="section-kicker">YOUR COLLECTION</span><h1>Anime tersimpan</h1>
@@ -135,7 +186,7 @@
   </main>
 
   <footer class="footer">
-    <a class="brand footer-brand" href="#" data-nav="home"><span class="brand-mark">A</span><span>Ani<span>Fams</span></span></a>
+    <a class="brand footer-brand" href="#" data-nav="home"><img class="brand-logo" src="https://files.catbox.moe/tbvobp.png" alt="Logo AniFams" decoding="async" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'brand-mark',textContent:'A'}))"><span>Ani<span>Fams</span></span></a>
     <p>Temukan cerita favoritmu, satu episode setiap kali.</p>
     <small>Data disediakan oleh API pihak ketiga. AniFams bukan penyedia konten video.</small>
   </footer>

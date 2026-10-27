@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#090b14">
+  <meta name="description" content="AniFams — tempat menemukan dan menonton anime favoritmu.">
+  <title>AniFams — Anime Streaming</title>
+  <link rel="preconnect" href="https://api.zetewstore.my.id">
+  <link rel="preconnect" href="https://oploverz.ch">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="AniFams Home" data-nav="home">
+      <span class="brand-mark">A</span><span>Ani<span>Fams</span></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Navigasi utama">
+      <button class="nav-link active" data-nav="home">Home</button>
+      <button class="nav-link" data-nav="catalog">Anime</button>
+      <button class="nav-link" data-nav="ongoing">Ongoing</button>
+      <button class="nav-link" data-nav="completed">Completed</button>
+    </nav>
+    <div class="top-actions">
+      <button class="icon-button" id="searchToggle" aria-label="Buka pencarian" title="Cari anime">⌕</button>
+      <button class="profile-chip" id="bookmarkNav" title="Anime tersimpan">♡</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="search-panel hidden" id="searchPanel">
+      <div class="search-box">
+        <span>⌕</span>
+        <input id="searchInput" type="search" placeholder="Cari judul anime..." autocomplete="off">
+        <button id="searchClear" aria-label="Tutup pencarian">✕</button>
+      </div>
+      <p class="search-hint">Tekan Enter untuk mencari anime.</p>
+    </section>
+
+    <section id="homeView" class="view">
+      <div class="hero" id="hero">
+        <div class="hero-content">
+          <span class="eyebrow"><i></i> ANIME DISCOVERY</span>
+          <h1>Temukan dunia<br><em>cerita tanpa batas.</em></h1>
+          <p>Jelajahi anime terbaru dan temukan tontonan berikutnya di AniFams.</p>
+          <div class="hero-actions">
+            <button class="primary-button" id="exploreButton">Jelajahi anime <span>→</span></button>
+            <span class="hero-note">AniFams v2 · Oploverz source</span>
+          </div>
+        </div>
+        <div class="hero-orbit orbit-a"></div><div class="hero-orbit orbit-b"></div>
+        <div class="hero-symbol">ア</div>
+        <div class="hero-bottom"><span>ANIME / YOUR NEXT STORY</span><span>01 — DISCOVER</span></div>
+      </div>
+
+      <section class="content-section">
+        <div class="section-heading">
+          <div><span class="section-kicker">KEEP EXPLORING</span><h2>Rilis terbaru</h2></div>
+          <button class="text-button" data-nav="catalog">Lihat katalog <span>↗</span></button>
+        </div>
+        <div class="anime-grid" id="latestGrid"></div>
+      </section>
+
+      <section class="content-section" id="continueSection">
+        <div class="section-heading">
+          <div><span class="section-kicker">PICK UP WHERE YOU LEFT</span><h2>Lanjutkan menonton</h2></div>
+          <button class="text-button" id="clearHistory">Hapus riwayat</button>
+        </div>
+        <div class="history-strip" id="historyGrid"></div>
+      </section>
+      <section class="content-section compact-section">
+        <div class="section-heading">
+          <div><span class="section-kicker">PICK YOUR MOOD</span><h2>Jelajahi genre</h2></div>
+        </div>
+        <div class="genre-chips" id="homeGenres"></div>
+      </section>
+    </section>
+
+    <section id="catalogView" class="view hidden">
+      <div class="page-heading">
+        <span class="section-kicker">THE ANIME LIBRARY</span>
+        <h1 id="catalogTitle">Jelajahi anime</h1>
+        <p id="catalogDescription">Temukan serial yang cocok untuk menemani waktumu.</p>
+      </div>
+      <div class="filters">
+        <label class="filter-control"><span>Genre</span>
+          <select id="genreFilter">
+            <option value="">Semua genre</option>
+          </select>
+        </label>
+        <label class="filter-control"><span>Status</span>
+          <select id="statusFilter">
+            <option value="">Semua status</option>
+            <option value="ongoing">Ongoing</option>
+            <option value="completed">Completed</option>
+          </select>
+        </label>
+        <label class="filter-control"><span>Urutkan</span>
+          <select id="orderFilter">
+            <option value="update">Update terbaru</option>
+            <option value="latest">Rilis terbaru</option>
+            <option value="popular">Popularitas</option>
+            <option value="rating">Rating</option>
+            <option value="title">Judul A–Z</option>
+            <option value="titlereverse">Judul Z–A</option>
+          </select>
+        </label>
+        <button class="reset-button" id="resetFilters">Reset</button>
+      </div>
+      <div class="result-line"><span id="resultLabel">Memuat anime...</span><span id="pageLabel"></span></div>
+      <div class="anime-grid" id="catalogGrid"></div>
+      <div class="load-more-wrap"><button class="secondary-button" id="loadMore">Muat halaman berikutnya <span>↓</span></button></div>
+    </section>
+
+    <section id="bookmarksView" class="view hidden">
+      <div class="page-heading">
+        <span class="section-kicker">YOUR COLLECTION</span><h1>Anime tersimpan</h1>
+        <p>Daftar anime yang kamu simpan di perangkat ini.</p>
+      </div>
+      <div class="anime-grid" id="bookmarkGrid"></div>
+    </section>
+
+    <section id="detailView" class="view hidden">
+      <button class="back-button" id="detailBack">← Kembali</button>
+      <div id="detailContent"></div>
+    </section>
+
+    <section id="watchView" class="view hidden">
+      <button class="back-button" id="watchBack">← Kembali ke detail anime</button>
+      <div id="watchContent"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a class="brand footer-brand" href="#" data-nav="home"><span class="brand-mark">A</span><span>Ani<span>Fams</span></span></a>
+    <p>Temukan cerita favoritmu, satu episode setiap kali.</p>
+    <small>Data disediakan oleh API pihak ketiga. AniFams bukan penyedia konten video.</small>
+  </footer>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
